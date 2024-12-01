@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="description" content="LLMs Meet Misinformation"> -->
+  <meta name="keywords" content="LLM, Large Language Model, Code LLM, SWE-Bench">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SWE-Fixer </title>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<!-- <meta name="generator" content="Jekyll v3.9.3" /> -->
+<meta property="og:title" content="SWE-Fixer: Training LLMs for Real World Github Issue Resolving" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://SWE-Fixer.github.io/" />
+<meta property="og:url" content="https://SWE-Fixer.github.io/" />
+<meta property="og:site_name" content="SWE-Fixer: Training LLMs for Real World Github Issue Resolving" />
+<meta property="og:type" content="website" />
+<!-- <meta property="og:image" content="https://SWE-Fixer.github.io/static/images/agent-trust-logo-tertiary.png" /> -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="SWE-Fixer: Training LLMs for Real World Github Issue Resolving" />
+<meta name="twitter:description" content="SWE-Fixer: Training LLMs for Real World Github Issue Resolving" />
+<!-- <meta name="twitter:site" content="@CanyuChen3" /> -->
+<!-- <meta name="twitter:image" content="https://SWE-Fixer.github.io/static/images/agent-trust-logo-tertiary.png" /> -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"SWE-Fixer: Training LLMs for Real World Github Issue Resolving","name":"SWE-Fixer: Training LLMs for Real World Github Issue Resolving","url":"https://SWE-Fixer.github.io/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Carousel</title>
+<style>
+  .carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .caption {
+    text-align: center;
+    padding: 5px;
+    background-color: #ddd;
+  }
+
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+</style>
+<style>
+  .author-block, .institution-block {
+    position: relative;
+    display: inline-block;
+  }
+
+  .author-block sup, .institution-block sup {
+    font-size: smaller;
+    top: -0.6em;
+  }
+
+  /* 可选：添加额外的样式以美化或符合您的页面设计 */
+  .publication-authors a, .publication-authors span {
+    margin-right: 5px;
+  }
+
+  .dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  .carousel-dots {
+    text-align: center;
+  }
+
+</style>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- <img src="./static/images/agent-trust-logo-tertiary.png" class="header-image" style="max-width:4cm; height: auto; vertical-align: middle; margin-right: 10px;"> -->
+            <h1 id="SWE-Fixer: Training LLMs for Real World Github Issue Resolving" class="title is-1 publication-title">SWE-Fixer: Training LLMs for Real World Github Issue Resolving</h1>
+            <h1 id="SWE-Fixer: Training LLMs for Real World Github Issue Resolving" class="is-size-5 publication-title">TLDR: We present <strong>SWE-Fixer</strong>, LLMs trained on a large-scale dataset of real-world GitHub issue resolutions, which we will make openly available to the community. Our model achieves impressive results on the SWE-Bench Lite, demonstrating its effectiveness in addressing software engineering tasks.</h1>
+              <br>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://yitianlian.github.io/" target="_blank">Chengxing Xie<sup>1*</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=RLWXNf8AAAAJ&hl=en" target="_blank">Bowen Li<sup>1*</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://gao-xiao-bai.github.io/" target="_blank">Chang Gao<sup>1*, 2</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://difanzou.github.io/" target="_blank">Difan Zou<sup>3</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://chenkai.site/" target="_blank">Kai Chen<sup>1</sup></a>
+            </div>
+            <div class="is-size-5 publication-institutions">
+              <span class="institution-block">1. Shanghai AI Laboratory, </span>
+              <span class="institution-block">2. The Chinese University of Hong Kong, </span>
+              <span class="institution-block">3. The University of Hong Kong</span>
+            </div>
+            <div>
+              <span class="is-size-6">* Equal contribution</span>
+            </div>
+            <br>
+            <div class="column has-text-centered">
+            <!-- Publication links -->
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2402.04559" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://github.com/SWE-Fixer" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code and Results</span>
+                  </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://huggingface.co/spaces/camel-ai/agent-trust-Trust-Game-Demo" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <i class="your-icon-library-class hugging-face"></i>
+                  <span>Trust Game Demo</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/camel-ai/agent-trust-Repeated-trust-game-Demo" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <i class="your-icon-library-class hugging-face"></i>
+                  <span>Repeated Trust Game Demo</span>
+                  </a>
+              </span> -->
+              <br>
+              <!-- <span class="link-block">
+                <a href="https://zhuanlan.zhihu.com/p/678425256"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-zhihu"></i>
+                  </span>
+                  <span>post</span>
+                  </a>
+              </span> -->
+              <!-- <span class="link-block">
+                <a href="https://drive.google.com/file/d/159V2B6FvXIPGKMPm1uiACFd4ZnRxZ3qO/view?usp=sharing" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1J2ilsMPZdsIJdxLgsqc2Bo2e-4urvvtR/view" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-powerpoint"></i>
+                </span>
+                  <span>Slides</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://x.com/CanyuChen3/status/1860794687168356446"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>post</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.linkedin.com/posts/canyu-chen-1b2415100_neurips2024-llm-generatieveai-activity-7266566769887076352-Q79f?utm_source=share&utm_medium=member_desktop"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-linkedin"></i>
+                  </span>
+                  <span>post</span>
+                  </a>
+              </span> -->
+            </div>
+            </div>
+            <!-- <div class="is-size-5 publication-authors">
+              Published at <b><i>NeurIPS 2024</i></b>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section">
+
+    <!-- <div class="container is-max-desktop" style="text-align: center;">
+      <figure style="display: inline-block;">
+        <img src="static/images/framework.png" alt="framework" style="max-width: 100%; height: auto;">
+        <figcaption><i><strong>Our Framework for Investigating Agent Trust as well as its Behavioral Alignment with Human Trust.</strong> First, this figure shows the major components for studying the trust behavior of LLM agents with Trust Games and Belief-Desire-Intention (BDI) modeling. Then, our study centers on examining the behavioral alignment between LLM agents and humans regarding trust behavior.</i></figcaption>
+      </figure>
+    </div>
+    <br><br>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Large Language Model (LLM) agents have been increasingly adopted as simulation tools to model humans in social science and role-playing applications. However, one fundamental question remains: <em>can LLM agents really simulate human behavior?</em> In this paper, we focus on one critical and elemental behavior in human interactions, <em>trust</em>, and investigate whether LLM agents can simulate human trust behavior. We first find that LLM agents generally exhibit trust behavior, referred to as <strong><em>agent trust</em></strong>, under the framework of <em>Trust Games</em>, which are widely recognized in behavioral economics. Then, we discover that GPT-4 agents manifest high <strong><em>behavioral alignment</em></strong> with humans in terms of trust behavior, indicating <em>the feasibility of simulating human trust behavior with LLM agents</em>. In addition, we probe the biases of agent trust and differences in agent trust towards other LLM agents and humans. We also explore the intrinsic properties of agent trust under conditions including external manipulations and advanced reasoning strategies. Our study provides new insights into the behaviors of LLM agents and the fundamental analogy between LLMs and humans beyond <em>value alignment</em>. We further illustrate broader implications of our discoveries for applications where trust is paramount.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  <!-- </section>
+  <section class="section"> -->
+    <!-- <br>
+    <br>
+    <div class="container is-max-desktop">
+      <figure>
+        <img src="static/images/framework.png" alt="survey">
+      </figure>
+    </div> -->
+  <!-- </section> -->
+  <!-- </section>
+  <section class="section"> -->
+    <div class="container is-max-desktop">
+
+      <!-- <div style="text-align:center">
+        <h2 class="title is-3">Our Contributions</h2>
+      </div> -->
+      <div style="text-align:center">
+        <!-- <h2 class="title is-3">Do LLM Agents Manifest Trust Behavior?</h2> -->
+      </div>
+      <div class="content has-text-justified">
+      <p>
+        <!-- In our study, the trust game serves as a framework to validate the presence of trust behavior in Large Language Model (LLM) agents. By examining the amounts sent and the Belief-Desire-Intention (BDI) interpretation for different LLMs within the context of the trust game, we aim to ascertain the existence of trust behavior in LLM agents. -->
+
+      </p>
+      </div>
+      <!-- <div class="columns is-centered">
+        <figure id="fig-trust">
+          <img src="static/images/trust game plot.png" alt="Figure 2">
+          <figcaption><strong>Fig 2: Amount Sent Distribution of LLM Agents and Humans as the Trustor in the Trust Game.</strong> The size of circles represents the number of personas for each amount sent. The bold lines show the medians. The <strong>crosses</strong> indicate the <strong>VRR</strong> (%) for different LLMs.</figcaption>
+        </figure>
+      </div> -->
+      <!-- <br> -->
+      <!-- <p>
+        <p>To evaluate LLMs' capacity to understand the basic experimental setting regarding money limits, we propose a new evaluation metric, Valid Response Rate (VRR) (%), defined as the percentage of personas with the amount sent falling within the initial money ($10). Results are shown in Figure <a href="##fig-trust">2</a>. We can observe that <strong>most LLMs have a high VRR except Llama-7b</strong>, which implies that most LLMs manifest a full understanding regarding limits on the amount they can send in the Trust Game. Then, we observe the distribution of amounts sent for different LLMs as the trustor agent and discover that <strong>the amounts sent are predominantly positive, indicating a level of trust</strong>.</p>
+        <p>Furthermore, the amounts sent by different LLMs acting as trustor agents are mostly positive, showcasing a level of trust. Additionally, we explored utilizing BDI to model the reasoning process of LLM agents. Since
+          we can interpret the decisions from the reasoning process,
+          we have evidence to show that LLM agents do not send a
+          random amount of money and have some degree of rationality in the decision making process.</p>
+        <p>Given these observations, we highlight our first core finding: </p>
+        <style>
+          .grey-box {
+              background-color: #c0c0c0; /* Grey color */
+              color: rgb(70, 70, 70); /* Dark text color */
+              padding: 20px; /* Padding inside the box */
+              margin: 20px 0; /* Margin outside the box, added 0 to remove left and right margins */
+              text-align: center; /* Center the text */
+          }
+        </style>
+        <div class="grey-box">
+          <p>LLM agents generally exhibit trust behavior under the framework of the Trust Game.</p>
+        </div>
+      </p> -->
+
+      <br />
+      <div style="text-align:center">
+        <!-- <h2 class="title is-3">Does Agent Trust Align with Human Trust?</h2> -->
+      </div>
+      <div class="content has-text-justified">
+        <br>
+        <!-- <p>In this section, we aim to explore the fundamental relationship between agent and human trust, i.e., whether or not agent trust aligns with human trust. This provides important insight regarding the feasibility of utilizing LLM agents to simulate human trust behavior as well as more complex human interactions that involve trust. First, we propose a new concept <em>behavioral alignment</em> and discuss its distinction from existing alignment definitions. Then, we conduct extensive studies to investigate whether or not LLM agents exhibit alignment with humans regarding trust behavior.</p> -->
+      </div>
+
+      <br>
+
+      <br />
+      <div style="text-align:center">
+        <!-- <h2 class="title is-3">Probing Intrinsic Properties of Agent Trust</h2> -->
+      </div>
+      <!-- <figure>
+        <img src="static/images/section_6_figure_9_no_race_model_relative_00.png" alt="Figure 2">
+        <figcaption><strong>The Change of Average Amount Sent for LLM Agents in Different Scenarios in the Trust Game, Reflecting the Intrinsic Properties of Agent Trust.</strong> The horizontal lines represent the original amount sent in the Trust Game. The green part embraces trustee scenarios including changing the demographics of the trustee, and setting humans and agents as the trustee. The purple part consists of trustor scenarios including adding manipulation instructions and changing the reasoning strategies.</figcaption>
+      </figure> -->
+
+      <br>
+
+      </div>
+    </div>
+  </section>
+  <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code></code></pre>
+  </div>
+</section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+<!-- <script>
+  let slideIndexes = { 'carousel1': 1, 'carousel2': 1 };
+  
+  function moveSlide(n, carouselId) {
+    let slides = document.querySelector('#' + carouselId + ' .carousel-inner').getElementsByClassName("carousel-item");
+    slideIndexes[carouselId] += n;
+    if (slideIndexes[carouselId] > slides.length) {slideIndexes[carouselId] = 1}
+    if (slideIndexes[carouselId] < 1) {slideIndexes[carouselId] = slides.length}
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndexes[carouselId] - 1].style.display = "block";
+  }
+  
+  // Initial display
+  document.addEventListener('DOMContentLoaded', function() {
+    moveSlide(0, 'carousel1');
+    moveSlide(0, 'carousel2');
+  });
+</script> -->
+
+<script>
+  let slideIndexes = { 'carousel1': 1, 'carousel2': 1};
+
+  function initDots(carouselId) {
+    let carousel = document.getElementById(carouselId);
+    let slides = carousel.getElementsByClassName("carousel-item");
+    let dotsContainer = carousel.getElementsByClassName("carousel-dots")[0];
+    for (let i = 0; i < slides.length; i++) {
+      let dot = document.createElement("span");
+      dot.classList.add("dot");
+      dot.onclick = function () { moveToSlide(i + 1, carouselId); };
+      dotsContainer.appendChild(dot);
+    }
+    updateDots(carouselId);
+  }
+
+  function moveSlide(n, carouselId) {
+    let slides = document.getElementById(carouselId).getElementsByClassName("carousel-item");
+    slideIndexes[carouselId] += n;
+    if (slideIndexes[carouselId] > slides.length) { slideIndexes[carouselId] = 1 }
+    if (slideIndexes[carouselId] < 1) { slideIndexes[carouselId] = slides.length }
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndexes[carouselId] - 1].style.display = "block";
+    updateDots(carouselId);
+  }
+
+  function moveToSlide(n, carouselId) {
+    slideIndexes[carouselId] = n;
+    moveSlide(0, carouselId);
+  }
+
+  function updateDots(carouselId) {
+    let carousel = document.getElementById(carouselId);
+    let dots = carousel.getElementsByClassName("dot");
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    dots[slideIndexes[carouselId] - 1].className += " active";
+  }
+
+  // Initial display
+  document.addEventListener('DOMContentLoaded', function() {
+    initDots('carousel1');
+    initDots('carousel2');
+    moveSlide(0, 'carousel1');
+    moveSlide(0, 'carousel2');
+  });
+</script>
+
+<!-- Default Statcounter code for agent-trust
+https://agent-trust.github.io/ -->
+<script type="text/javascript">
+  var sc_project=12965021; 
+  var sc_invisible=1; 
+  var sc_security="8909ecc2"; 
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img
+  class="statcounter"
+  src="https://c.statcounter.com/12965021/0/8909ecc2/1/"
+  alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+</body>
+<script>
+  function changeContent() {
+    const dropdown = document.getElementById("dropdown");
+    const selected = dropdown.value;
+    const sections = ["example_1", "example_2", "example_3", "example_4", "example_5", "example_6", "example_7", "example_8", "example_9", "example_10", "example_11", "example_12", "example_13", "example_14"];
+
+    sections.forEach((section) => {
+      document.getElementById(section).style.display = (section === selected) ? "block" : "none";
+    });
+  }
+</script>
+
+
+
+
+</html>
